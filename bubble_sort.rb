@@ -1,3 +1,4 @@
+# Ascending sort
 inputs = gets.chomp.split(',')
 nums = []
 inputs.each do |input|
