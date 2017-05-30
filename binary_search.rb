@@ -10,26 +10,24 @@ end
 nums.length
 
 left = 0
+mid = 0
 right = nums.length - 1
-mid = (left + right) / 2
 
-flag = true
-while flag
+flag = false
+while left <= right
+  mid = (left + right) / 2
   if nums[mid] == search
-    flag = false
+    flag = true
     break
   elsif nums[mid] < search
     left = mid + 1
-    break if right < left
   else
     right = mid - 1
-    break if right < left
   end
-  mid = (left + right) / 2
 end
 
 if flag
-  puts 'Not Found'
-else
   puts mid
+else
+  puts 'Not Found'
 end
