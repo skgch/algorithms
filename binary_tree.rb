@@ -8,11 +8,6 @@ class Node
 end
 
 class BinaryTree
-
-  def initialize(value)
-    @root = Node.new(value)
-  end
-
   def search(value)
     node = @root
     while node
@@ -27,6 +22,11 @@ class BinaryTree
   end
 
   def insert!(value)
+    if @root.nil?
+      @root = Node.new(value)
+      return
+    end
+
     if search(value).nil?
       node = @root
       loop do
@@ -56,13 +56,23 @@ class BinaryTree
     node = node.left while node.left
     return node
   end
+
+  def max
+    node = @root
+    node = node.right while node.right
+    return node
+  end
+
 end
 
 # test
 data = [5, 6, 3, 7, 2]
-tree = BinaryTree.new(10)
+tree = BinaryTree.new
 data.each do |value|
   tree.insert!(value)
 end
-puts tree.min.value
-p tree
+
+p tree.min
+tree.insert!(1)
+p tree.max
+p tree.search(5)
