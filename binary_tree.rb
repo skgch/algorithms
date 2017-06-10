@@ -8,6 +8,7 @@ class Node
 end
 
 class BinaryTree
+  attr_accessor :root
   def search(value)
     node = @root
     while node
@@ -63,16 +64,35 @@ class BinaryTree
     return node
   end
 
+  def self.preorder(node)
+    puts node.value
+    preorder(node.left) if node.left
+    preorder(node.right) if node.right
+  end
+
+  def self.inorder(node)
+    inorder(node.left) if node.left
+    puts node.value
+    inorder(node.right) if node.right
+  end
+
+  def self.postorder(node)
+    postorder(node.left) if node.left
+    postorder(node.right) if node.right
+    puts node.value
+  end
 end
 
 # test
-data = [5, 6, 3, 7, 2]
+data = [4, 2, 6, 1, 3, 5, 7]
 tree = BinaryTree.new
 data.each do |value|
   tree.insert!(value)
 end
 
-p tree.min
-tree.insert!(1)
-p tree.max
-p tree.search(5)
+# p tree.min
+# p tree.max
+# p tree.search(5)
+# BinaryTree.preorder(tree.root)
+# BinaryTree.inorder(tree.root)
+# BinaryTree.postorder(tree.root)
